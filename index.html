@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="accueil.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+
+    <title>Accueil</title>
+</head>
+<body>
+  <style>
+    *{
+      font-family: 'Poppins', sans-serif;
+    }
+    body{
+     /* background-image: linear-gradient(to right,  rgb(92, 0, 252),rgb(223, 237, 248)); */
+     margin: 0;
+    padding: 0;
+    height: 100%;
+
+     
+    }
+  
+   video {
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+ 
+}
+
+</style>
+
+<video autoplay muted loop class="vid">
+  <source src="./pictures/vid.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<div class="content">
+
+
+
+
+<!-- The actual video (replace this with your own video source) -->
+<div class="video-container">
+
+</div>     
+ 
+
+         <!-- start login form  -->
+         <div class="loginForm">
+          <i class="fa fa-window-close removeIcon" id="closeIcon"  aria-hidden="true" onclick="remove_logine()"></i>
+              <style>
+                        .loginForm .removeIcon {
+                          position: absolute;
+                              right: 0%;
+                              top: 0%;
+                              margin: 10px;
+                              font-size: 30px;
+                              z-index: 1000;
+                              color: #ffffff;
+                              cursor: pointer;
+                        }
+                                @media (max-width: 788px){
+                                    
+                                    .loginForm .removeIcon {
+                                  
+                                      right: 3%;
+                                      top: 2%;
+                                      
+                                      
+                                  }
+                                }
+              </style>
+
+          <div class="containerlogin" id="containerlogin" >
+             <!-- Etudiant -->
+            <div class="form-container sign-in">
+             
+                <form>
+                  <img src="./pictures/logo.png" alt="" style="width:100px; color: rgb(0, 0, 0);
+                  border-radius: 50%;
+                  margin-bottom: 20px;
+
+                  border: solid 3px white; box-shadow: 2px 2px 2px rgb(0, 0, 0);">
+                   <h1 class="span3"> l'Université de Blida1</h1>
+                 <h3 class="span4">
+                  USDB 1– Faculté des Sciences Département   d’informatique
+                  </h3>
+                      <span style="font-weight: 500;
+                      font-size: 14px;">Afin d’accéder à vos cours en ligne, connectez vous à votre compte elearning Moodle avec votre username et mot de passe
+                         Connexion</span>
+                    <input type="text" placeholder="Nom d'utilisateur">
+                    <input type="password" placeholder="Mot de passe">
+                     
+                    <button>Connexion</button>
+                </form>
+            </div>
+            
+        </div>
+    
+     
+
+         <!--  start style de login form -->
+         <style>
+           .loginForm{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height:100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            background-image: linear-gradient(to right,  rgba(37, 40, 43, 0.619), rgba(25, 18, 38, 0.619));
+            display: flex;
+            justify-content: center;
+            
+            display: none;
+            
+           }
+.containerlogin{
+      height: 95vh;
+  background-image: linear-gradient(to right,  rgb(223, 237, 248), rgb(10, 10, 10));
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    box-shadow:  1px 1px 30px black;
+}
+
+.containerlogin p{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+
+.containerlogin span{
+    font-size: 12px;
+}
+
+.containerlogin a{
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.containerlogin button{
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+
+
+.containerlogin form{
+    background-color: #fff;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.containerlogin input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    transition: all 0.6s ease-in-out;
+}
+  /* pour etudaint */
+.sign-in{
+    left: 0;
+    width: 100%;
+    z-index:  2;
+}
+/* pour affiche  Enseignan */
+
+.hide-sign-in{
+  z-index:-2;
+}
+
+
+
+
+
+
+
+
+
+.social-icons{
+    margin: 20px 0;
+}
+
+.social-icons a{
+    border: 1px solid #ccc;
+    border-radius: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+    width: 40px;
+    height: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:770px) {
+  .containerlogin{
+
+  
+  width: 700px;
+  max-width: 100%;
+  min-height: 480px;
+   display: flex;
+   flex-direction: column;
+ 
+}   
+ }
+
+.loginForm-on{
+  display: flex;
+    z-index: 10000;
+}
+         </style>
+     
+   
+         <!--  end style de login form -->
+         </div>
+          
+         <!-- end  login form  -->
+
+      <!-- ********************************start style pour le font de body******************************** -->
+     
+      
+        <!-- **********************************end style pour le font de body **************************-->
+
+         <!-- ************************************* start container***************************************** -->
+    <div class="container" style=" max-width:1000px;
+    margin: 50px auto 10px;
+            display: flex;
+            gap: 50px;
+             flex-direction: column;
+             justify-content: center;
+             align-items: center;
+            
+             padding:  20px;
+             background-color: #00000000;
+    ">
+        <!-- start header simple -->
+           <div class="header">
+              <img src="./pictures/logo.png" alt="" style="width:100px; color: aqua;border-radius: 50%;
+              border: solid 3px white; box-shadow: 2px 2px 2px rgb(227, 227, 227);">
+               <span class="span1"> Ministère de l'enseignement supérieur et de la recherche scientifique
+              </span>
+               <span class=" span2">
+                  وزارة التعليم العالي و البحث العلمي 
+                </span>
+                 <span class="span3"> l'Université de Blida1</span>
+                 <span class="span4">
+                  USDB 1– Faculté des Sciences Département  <span> d’informatique</span> 
+                  </span>
+               </div>
+
+               <!--  strat style ta3 lheader -->
+                <style>
+                  .header{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    color: aliceblue;
+                    font-weight: 600;
+                    width: 100%;
+                    background-color: black;
+                    border: solid 3px white;
+                    border-radius: 4PX;
+                    text-align: center;
+                    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.822);
+                     margin-bottom: 50px;
+                     padding: 20px;
+                    
+                  }
+                  @media (max-width: 600px) {
+                   
+                    .header .span1{
+                      text-align: center;
+                 }
+              }
+              
+
+                </style>
+                 <!--  end style ta3 lheader -->
+
+        <!-- ******************** end header simple************************* -->
+
+    <!-- *************Start NavBar*********  -->
+   
+    <nav class="navbar navbar-dark  fixed-top" >
+      <div class="container-fluid">
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation"
+        style="border: solid white;
+        ">
+          <span class="navbar-toggler-icon " style="color:rgb(46, 43, 51);
+          ";" ></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel" 
+        style="background-image: linear-gradient(to right,  rgb(11, 10, 11),rgb(223, 237, 248));
+         
+         
+         border: 3px solid white;
+         border-radius: 10px 0 0 10px;
+          "
+        ">
+          <div class="offcanvas-header">
+            
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body" >
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3" style=" font-weight: 500;
+            color:rgb(29, 27, 32) !important;
+            font-size: 19px;" >
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Accuiel</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Cours</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#sec2">À propos du site</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">Contact</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Profile
+                </a>
+                <ul class="dropdown-menu" style="background-color: rgb(179, 179, 225);">
+
+                  <li><a class="dropdown-item" href="./pages/loginSignForme.html" onclick="show_logineform(event)">Créer Un Compte</a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="./pages/loginSignForme.html"> Vous Avez Un Compte </a></li>
+                  <li><a class="dropdown-item" href="#"> Se déconnecter </a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex mt-3" role="search">
+              <input class="form-control me-2" type="search" placeholder="Cours de recherche" aria-label="Search">
+              <button class="btn btn-success" type="submit"
+              style="  background-image: linear-gradient(to right,  rgb(223, 237, 248), rgb(0, 0, 0));
+              border: 2px solid white;">rechercher</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+
+    <!--  *********end  NavBar********  -->
+     <!-- ***************start section1**************** -->
+     <section class="section1" style="background-color: #000000e4; margin-bottom: 130px;" >
+       <div class="first-div">
+         <h2 style="font-weight: 600 ; 
+         line-height:1;
+         text-shadow: 2px 2px 2px rgb(0, 0, 0);
+         text-transform: capitalize;
+         ">Connectez vous à votre compte E-Learning</h2>
+         <span style="font-weight: 500;
+         font-size: 14px;">Afin d’accéder à vos cours en ligne, connectez vous à votre compte elearning Moodle avec votre username et mot de passe
+            Connexion</span>
+            <div class=" btns">
+
+            <button class="btn1-first-sec1"  
+            style="width:160px; padding: 5px;
+            color: white; margin-top: 25px; 
+            font-size: 19px; font-weight: 500; 
+            background-image: linear-gradient(to right, rgb(50, 50, 50), rgb(0, 0, 0));
+             border: 2px solid white;
+              border-radius: 4px;"
+             onclick="show_logineform(event)">
+              Connexion
+            </button>
+<a href="./pages/loginSignForme.html">
+  <button class="btn2-first-sec1" 
+  style="width:160px; padding: 5px;
+   color: white; margin-top: 25px;
+    font-size: 19px; font-weight: 500; 
+   background-image: linear-gradient(to right, rgb(54, 54, 54), rgb(0, 0, 0));
+    border: 2px solid white;
+     border-radius: 4px;"
+     onclick="show_logineform(event)">
+     Inscription
+   </button>
+</a>
+            
+
+         </div>
+         <script>
+          let logiform = document.querySelector(".loginForm");
+           let form = document.querySelector(".sign-in");
+      
+           let show_logineform = (e) => {
+
+                
+                
+                     if(e.target.className == "btn1-first-sec1"){
+                      logiform.classList.add("loginForm-on")
+                           }
+                           
+                                                   }
+      
+          let remove_logine = () => {
+              logiform.classList.remove("loginForm-on");
+              form.classList.remove("hide-sign-in");
+          }
+      
+          // Ajoutez un écouteur d'événements pour le clic sur l'icône de fermeture
+         
+      </script>
+       </div>
+       <div class="secend-div">
+          <img  src="./pictures/pic1.png" alt="" class="pic1" >
+       </div>
+      </section>
+        <!-- start section1 style  -->
+        <style>
+       .container .section1{
+        margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+         
+           border: 3px solid white;
+           padding: 13px;
+           border-radius: 5px;
+            width: 100%;
+          }
+          .section1 .first-div{
+         
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+            color: aliceblue;
+          }
+          
+          
+          .section1 .secend-div .pic1{
+              max-width: 100%;
+          }
+          .container >  .section1 > .first-div > .btns{
+            width: max-content;
+            height: fit-content;
+            display: flex;
+            
+            gap:20px;
+          }
+          @media (max-width: 600px) {
+            .container .section1{
+
+              grid-template-columns: repeat(1,1fr);
+              margin-top: 30px;
+             
+            
+          } .section1 .first-div h2{
+             font-weight: 500;
+             font-size: 17px;
+             max-width: 423px;  
+       }
+          .section1 .secend-div .pic1{
+              display: none;
+          }
+          .container   .section1 .first-div  .btns{
+            display: flex;
+           justify-content: left;
+             flex-direction: column;
+            gap: 5px;}
+             }
+
+        </style>
+        <!-- end section1 style  -->
+  
+          <!-- animated wedjet -->
+
+          <!-- animated wedjet -->
+
+      <!-- ***************end section1**************** -->
+       <!-- start slide -->
+       <div class="slide-1" style="
+       width: 100%;
+       margin: 20px auto !important;
+       margin-top: -100px;
+       border: 3px solid rgb(0, 0, 0);
+           padding: 20px;
+           border-radius: 5px;
+       "
+       >
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="./pictures/pic2.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="./pictures/P1.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="./pictures/P2.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="./pictures/P3.jpg" class="d-block w-100" alt="...">
+            </div>
+          </div>
+        </div>
+       </div>
+       <style>
+        .slide-1 .slide .carousel-inner .carousel-item img {
+          width:100% !important;
+        }
+       </style>
+
+        <!-- end slide -->
+
+         <!-- start  section of courses-->
+              <!--from base de donneé-->
+         <!-- end  section of courses -->
+
+
+        <!-- start secend section -->
+        <div class="section2" id="sec2" style="padding: 50px;">
+          <h2>
+            À propos du site
+          </h2>
+          <span>
+            Chers étudiants et professeurs de l’Université Saad Daleb Blida 1, nous sommes heureux de placer ce site entre vos mains, pour pouvoir assister à des cours en ligne avec de nombreuses fonctionnalités offertes par le site, pour une expérience unique et la réussite éducative.
+          </span>
+        </div>
+
+        <style>
+           .container .section2 {
+               text-align: center;
+               color: white;
+               font-weight: 600;
+               border: 3px solid white;
+           padding: 20px;
+           border-radius: 5px;
+         background-color: black;
+          }
+        </style>
+         <!-- end secend section -->
+
+         <!-- start contact section  -->
+         <section class="footer" id="contact" style="width: 100%;">
+          <!-- Remove the container if you want to extend the Footer to full width. -->
+<div class="container my-5" style="background-color: rgb(0, 0, 0);
+border: 3px solid white;
+           padding: 20px;
+           border-radius: 5px;
+           width: 100%;">
+  <!-- Footer -->
+  <footer
+          class="text-center text-lg-start text-white"
+          style="width: 100%;"
+          >
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Links -->
+      <section class="">
+        <!--Grid row-->
+        <div class="row">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">
+              Université Blida 1
+            </h6>
+            <p>
+              USDB 1– Faculté des Sciences Département  <span> d’informatique</span>     
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+         
+          <!-- Grid column -->
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">
+              Useful links
+            </h6>
+            <p>
+              <a class="text-white" style=" text-decoration: none; 
+              cursor: pointer;">Your Account</a>
+            </p>
+            <p>
+              <a class="text-white" style=" text-decoration: none;
+              cursor: pointer;">Help</a>
+            </p>
+          </div>
+
+          <!-- Grid column -->
+          <hr class="w-100 clearfix d-md-none" />
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+            <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+            <p><i class="fas fa-home mr-3"></i>1 Rue D, Blida, DZ</p>
+            <p><i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
+            <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
+            <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!--Grid row-->
+      </section>
+      <!-- Section: Links -->
+
+      <hr class="my-3">
+
+      <!-- Section: Copyright -->
+      <section class="p-3 pt-0">
+        <div class="row d-flex align-items-center">
+          <!-- Grid column -->
+          <div class="col-md-7 col-lg-8 text-center text-md-start">
+            <!-- Copyright -->
+            <div class="p-3">
+             
+             <span> ©2023 Copyright</span>
+            </div>
+            <!-- Copyright -->
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+            <!-- Facebook -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               > <i class="fab fa-facebook-f"></i></a>
+
+            <!-- Twitter -->
+            <a  class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"><i class="fab fa-twitter"></i></a>
+
+            <!-- Google -->
+            <a
+               class="btn btn-outline-light btn-floating m-1"
+               class="text-white"
+               role="button"
+               ><i class="fab fa-google"></i
+              ></a>
+
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" class="text-white" role="button">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+          <!-- Grid column -->
+        </div>
+      </section>
+      <!-- Section: Copyright -->
+    </div>
+    <!-- Grid container -->
+  </footer>
+  <!-- Footer -->
+</div>
+<!-- End of .container -->
+         </section>
+         <!-- end contact section  -->
+    </div>
+             <!-- ************************************* end container***************************************** -->
+  
+          
+          </div>
+</body>
+</html>
