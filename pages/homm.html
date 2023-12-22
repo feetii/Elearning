@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script type="module" src="../backend/globale.js"></script>
+
+    
+    <style>
+        /* Add your custom styles here */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            align-items: center;
+        }
+
+        #signOutBtn {
+            margin-top: 20px; /* Add margin for spacing */
+        }
+
+        #fileInput {
+            margin-top: 20px; /* Add margin for spacing */
+        }
+
+        #documentViewer {
+            margin-top: 20px; /* Add margin for spacing */
+        }
+
+        #downloadButton {
+            margin-top: 10px; /* Add margin for spacing */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <button id="signOutBtn" class="btn btn-primary" type="submit">Sign Out</button>
+        </div>
+        
+        <!-- Add file input field -->
+        <div class="row">
+            <input id="fileInput" type="file" accept=".pdf, .doc, .docx">
+            <button id="uploadButton" class="btn btn-primary">Upload File</button>
+        </div>
+
+        <!-- Document Viewer -->
+        <div class="row">
+            <iframe id="documentViewer" src="" width="800" height="600" frameborder="0"></iframe>
+        </div>
+
+        <!-- Download Button -->
+        <div class="row">
+            <button id="downloadButton" class="btn btn-success"style="visibility: hidden;">Download</button>
+        </div>
+        <!-- Chat Button -->
+        <div class="row">
+              <a href="chat.html" class="btn btn-info">Go to Chat</a>
+               </div>
+               <div class="row">
+                <a href="listChat.html" class="0">Go to liste Chat</a>
+                 </div>
+                 
+    </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

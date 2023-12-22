@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Page Loading</title>
+  <!-- Import Google font - Poppins -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+  <style>
+    /* Your existing styles here */
+    .main {
+      transition: margin-left 0.5s;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      z-index: 100;
+      background: #e7f2fd;
+    }
+    .main h1 {
+      color: #11101d;
+      font-size: 40px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <!-- Your existing sidebar content -->
+  <div class="submenu-item" data-target-page="page1.html">Item 1</div>
+  <div class="submenu-item" data-target-page="page2.html">Item 2</div>
+</div>
+
+<div class="main">
+  <!-- Content container -->
+  <h1>Welcome to the Main Content</h1>
+</div>
+
+<script>
+  const sidebar = document.querySelector(".sidebar");
+  const menuItems = document.querySelectorAll(".submenu-item");
+  const menu = document.querySelector(".menu-content");
+  const contentContainer = document.querySelector(".main");
+
+  function loadPageIntoContainer(targetPage) {
+    fetch(targetPage)
+      .then(response => response.text())
+      .then(content => {
+        contentContainer.innerHTML = content;
+      })
+      .catch(error => console.error("Error loading page:", error));
+  }
+
+  menuItems.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      menu.classList.add("submenu-active");
+      item.classList.add("show-submenu");
+      menuItems.forEach((item2, index2) => {
+        if (index !== index2) {
+          item2.classList.remove("show-submenu");
+        }
+      });
+
+      // Get the target URL or page to fetch
+      const targetPage = item.getAttribute("data-target-page");
+
+      // Check if a target page is defined
+      if (targetPage) {
+        // Load the page into the main container
+        loadPageIntoContainer(targetPage);
+      }
+    });
+  });
+
+  // Additional code for closing submenu
+  const subMenuTitles = document.querySelectorAll(".submenu .menu-title");
+
+  subMenuTitles.forEach((title) => {
+    title.addEventListener("click", () => {
+      menu.classList.remove("submenu-active");
+    });
+  });
+</script>
+
+</body>

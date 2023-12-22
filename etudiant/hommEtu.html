@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sidebar Menu for Admin Dashboard | CodingNepal</title>
+    <link rel="stylesheet" href="hommEt.css" />
+    <script type="module" src="../backend/globale.js"></script>
+    
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  </head>
+  <body>
+    <nav class="sidebar">
+      <a href="#" class="logo">E-Learning</a>
+
+      <div class="menu-content">
+        <ul class="menu-items">
+          <div class="menu-title">Your menu title</div>
+
+          <li class="item" data-target-page="acceuil.html">
+            <a href="#">acceuil</a>
+          </li>
+
+        
+
+          
+          <li class="item" data-target-page="">
+            <a href="#">Mes modules</a>
+          </li>
+          <li class="item" data-target-page="">
+            <a href="#">Your  link</a>
+          </li>
+          <li class="item" data-target-page="">
+            <a href="#">Your third link</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <nav class="navbar">
+      <i class="fa-solid fa-bars" id="sidebar-close"></i>
+      <button class="logout-btn">
+        <i id="logout" class="fas fa-sign-out-alt"></i> Logout
+      </button>    
+    
+    </nav>
+
+    <main class="main" id="main-content">
+      <h1>Etudiant Dashboard Content</h1>
+    </main>
+
+    <script type="module">
+    import { auth} from '../backend/globale.js'
+   
+  
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('logout').addEventListener('click', function() {
+         auth.signOut().then(function() {
+              // Sign-out successful.
+              console.log('User signed out successfully');
+              window.location.href='../index.html'
+          }).catch(function(error) {
+              // An error happened.
+              console.error('Error signing out:', error);
+          });
+      });
+      });
+      //recupere id user pour utilise dans base donnes
+      var urlParams = new URLSearchParams(window.location.search);
+      var idEtud = urlParams.get('iduser');
+
+     // Utilise la variable reçue comme bon te semble
+      console.log("Variable reçue : " + idEtud);
+
+
+
+
+
+     
+     
+     
+     
+     
+     
+    
+     
+     ////front script de la page
+    const sidebar = document.querySelector(".sidebar");
+    const sidebarClose = document.querySelector("#sidebar-close");
+    const menuItems = document.querySelectorAll(".item");
+    const submenuItems = document.querySelectorAll(".has-submenu");
+    const menu = document.querySelector(".menu-content");
+    const contentContainer = document.querySelector(".main");
+    sidebar.classList.toggle("close");
+
+     // il point vere la premier page dans votre sid bar
+      loadPageIntoContainer("login.html")
+
+
+
+
+
+    submenuItems.forEach((submenuItem) => {
+      const submenu = submenuItem.querySelector(".submenu");
+      const submenuLink = submenuItem.querySelector(".submenu-item");
+      
+      submenuLink.addEventListener("click", (event) => {
+        event.stopPropagation();
+        submenu.classList.toggle("submenu-active");
+      });
+    });
+    
+    menuItems.forEach((item) => {
+      item.addEventListener("click", (event) => {
+        event.stopPropagation(); // Prevents the click event from reaching the document level
+    
+        const targetPage = item.getAttribute("data-target-page");
+        const hasSubmenu = item.classList.contains("has-submenu");
+    
+        if (hasSubmenu) {
+          menu.classList.toggle("submenu-active");
+          item.classList.toggle("show-submenu");
+        } else if (targetPage) {
+          loadPageIntoContainer(targetPage);
+          sidebar.classList.toggle("close");
+          contentContainer.style.filter = "none";
+        }
+      });
+    });
+    
+    function loadPageIntoContainer(targetPage) {
+      console.log("Loading page:", targetPage);
+      fetch(targetPage)
+        .then(response => response.text())
+        .then(content => {
+          contentContainer.innerHTML = content;
+        })
+        .catch(error => console.error("Error loading page:", error));
+    }
+    
+    sidebarClose.addEventListener("click", () => {
+    sidebar.classList.toggle("close");
+
+    if (!sidebar.classList.contains("close")) {
+        // Apply blur when sidebar is open
+        appliquerFlou();
+    } else {
+        // Remove blur when sidebar is closed
+        contentContainer.style.filter = "none";
+    }
+});
+    
+function appliquerFlou() {
+    var element = document.getElementById("main-content");
+    element.style.transition = "filter 0.5s"; // Add a smooth transition
+    element.style.filter = "blur(10px)"; // Adjust the value for the desired blur intensity
+}
+    
+    </script>
+  </body>
+</html>

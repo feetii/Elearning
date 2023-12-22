@@ -6,12 +6,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script type="module" src="../backend/auth.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet">
     <title>Login Page</title>
 </head>
 
 <body>
+    <div class="alert hide">
+        <span class="fas fa-exclamation-circle"></span>
+        <span class="msg">Warning: This is a warning alert!</span>
+        <div class="close-btn">
+           <span class="fas fa-times"></span>
+        </div>
+     </div>
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+        .alert{
+            display: flex;
+    z-index: 10000;
+  background: #ffdb9b;
+  padding: 20px 40px;
+  min-width: 420px;
+  position: absolute;
+  right: 0;
+  top: 10px;
+  border-radius: 4px;
+  border-left: 8px solid #ffa502;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.alert.showAlert{
+  opacity: 1;
+  pointer-events: auto;
+}
+.alert.show{
+  animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide {
+  0%{
+    transform: translateX(100%);
+  }
+  40%{
+    transform: translateX(-10%);
+  }
+  80%{
+    transform: translateX(0%);
+  }
+  100%{
+    transform: translateX(-10px);
+  }
+}
+.alert.hide{
+  animation: hide_slide 1s ease forwards;
+}
+@keyframes hide_slide {
+  0%{
+    transform: translateX(-10px);
+  }
+  40%{
+    transform: translateX(0%);
+  }
+  80%{
+    transform: translateX(-10%);
+  }
+  100%{
+    transform: translateX(100%);
+  }
+}
+.alert .fa-exclamation-circle{
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ce8500;
+  font-size: 30px;
+}
+.alert .msg{
+  padding: 0 20px;
+  font-size: 18px;
+  color: #ce8500;
+}
+.alert .close-btn{
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffd080;
+  padding: 20px 18px;
+  cursor: pointer;
+}
+.alert .close-btn:hover{
+  background: #ffc766;
+}
+.alert .close-btn .fas{
+  color: #ce8500;
+  font-size: 22px;
+  line-height: 40px;
+}
         *{
           font-family: 'Poppins', sans-serif;
         }
@@ -84,7 +177,7 @@
 
         <!-- first form -->
         <div class="form-container sign-up">
-   <form  method="post">
+   <form id="signupForm" method="post">
     <h1>Créer Votre Compte</h1>
     <div class="social-icons">
         <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -92,25 +185,56 @@
         <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
     </div>
     <span></span>
-    <input type="text" placeholder="Name">
-    <input type="email" placeholder="Email">
+    <input type="text" id="nom" placeholder="Nom" >
+    <input type="text" id="prenom" placeholder="Prénom">
+    <input type="email" id="email" placeholder="Email">
     <div style="width: 100%;">
         <label for="Etudiant" >Etudiant</label>
-        <input type="radio"  name="type" class="radioEtudiant" value="etudiant">
+        <input type="radio"  name="type" class="radioEtudiant" value="etudiant" checked>
         <label for="Etudiant">Enseignant</label>
         <input type="radio"  name="type" class="radioEnseignant" value="enseignant">
-      
-    <input type="text" placeholder="Le numéro de la carte" class="matriculeEtd">
+        <div class="div-info-ETD">
+            <input type="text" id="matricule" placeholder="Le numéro de la carte">
+            <div  style="display: flex;
+            justify-content: left;
+            margin-left: 5px;
+            background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+    color: #4b4b4bc7;
+            ">
+                <label for="Année">Année Universitaire :</label>
+                <select name="Année" id="Année" style=" background-color: #eee;
+                border: none;
+                font-size: 13px;
+                border-radius: 8px;
+                color: #4b4b4bc7;
+                outline: none;">
+                    <option value="l1">L1</option>
+                    <option value="l2">L2</option>
+                    <option value="l3isil">L3 Isil</option>
+                    <option value="l4isil">L3 Siq</option>
+                </select>
+            </div>
+          
+
+        </div> 
+
     <div class="div-info-ENS">
-    <input type="text" placeholder="Domaine">
-    <input type="text" placeholder="Grade">
+    
+    <input type="text" id="grad" placeholder="Grade" >
     </div>
     </div>
-    <input type="password" placeholder=" Votre Password ">
-    <input type="password" placeholder="  Confirmer Votre Password ">
+    <input type="password" id="password" placeholder=" Votre Password ">
+    <input type="password" id="confirmPassword" placeholder="  Confirmer Votre Password ">
     
 
-    <button>Inscription</button>
+    <button type="submit">Inscription</button>
 </form>
 </div>
  <style>
@@ -122,35 +246,64 @@
     }
 
  </style>
-<script>
-    // Correction du script
+<!-- <script>
+   document.addEventListener('DOMContentLoaded', function () {
     let radioEtudiant = document.querySelector(".radioEtudiant");
-    let radioEnseignant = document.querySelector(".radioEnseignant");
-    let divInfoEns = document.querySelector(".div-info-ENS");
-     let matriculeEtd = document.querySelector(".matriculeEtd");
-    // Assurez-vous de ne pas utiliser des guillemets autour de true
-    radioEtudiant.checked = true;
+      let radioEnseignant = document.querySelector(".radioEnseignant");
+      let divInfoEns = document.querySelector(".div-info-ENS");
+      let matriculeEtd = document.querySelector(".matriculeEtd");
+      let academicYearContainer = document.querySelector(".div-academic-year");
 
-    // Utilisez l'événement onclick pour détecter le clic sur le bouton radio
-    
-    //changment a enseignat
-    radioEnseignant.onclick = () => {
-        if (radioEnseignant.checked) {
-            divInfoEns.classList.add("div-info-ENS-on");
-            matriculeEtd.style.display = "none"
-        }
-    };
-   
-    //changment a etudiant
-    radioEtudiant.onclick = () => {
-        if (radioEtudiant.checked) {
-            matriculeEtd.style.display = "block"
-            divInfoEns.classList.remove("div-info-ENS-on");  
-        } 
-    };
+      // Utilize the checked property to check the initial state
+      if (radioEtudiant.checked) {
+          matriculeEtd.style.display = "block";
+          divInfoEns.classList.remove("div-info-ENS-on");
+          academicYearContainer.style.display = "none";
+      } else {
+          matriculeEtd.style.display = "none";
+          divInfoEns.classList.add("div-info-ENS-on");
+          academicYearContainer.style.display = "block";
+      }
 
+      // Utilize the event listener to respond to clicks on radio buttons
+      radioEnseignant.onclick = () => {
+          if (radioEnseignant.checked) {
+              divInfoEns.classList.add("div-info-ENS-on");
+              matriculeEtd.style.display = "none";
+              academicYearContainer.style.display = "none";
+          }
+      };
 
-        // Fonction de validation du formulaire
+      radioEtudiant.onclick = () => {
+          if (radioEtudiant.checked) {
+              matriculeEtd.style.display = "block";
+              divInfoEns.classList.remove("div-info-ENS-on");
+              academicYearContainer.style.display = "block";
+          }
+      };
+
+      let selectedType = document.querySelector('input[name="type"]:checked').value;
+      var nom = document.getElementById('nom').value;
+      var prenom = document.getElementById('prenom').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+      var grad = document.getElementById('grad').value;
+      var domain = document.getElementById('domaine').value;
+
+      let user;
+
+      // Create instance based on the selected type
+      if (selectedType === 'etudiant') {
+          // If "Etudiant" is checked
+          user = new Etudiant(nom, prenom, email, matriculeEtd.value);
+      } else {
+          // If "Enseignant" is checked
+          user = new Enseignant(nom, prenom, email, domain, grad);
+      }
+
+        });
+
+        // Validation function
         function validateForm() {
         // Récupérer les valeurs des champs
         let name = document.querySelector('input[placeholder="Name"]').value;
@@ -206,9 +359,9 @@
         return true;
     }
 
-    // Attacher la fonction de validation au formulaire
+// Attacher la fonction de validation au formulaire
     document.querySelector('form').onsubmit = validateForm;
-</script>
+</script> -->
             </div>
     
         </div>
