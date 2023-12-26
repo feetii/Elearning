@@ -20,13 +20,12 @@
         <ul class="menu-items">
           <div class="menu-title">Your menu title</div>
 
+          <li class="item" data-target-page="login.html">
+            <a href="#">login</a>
+          </li>
           <li class="item" data-target-page="acceuil.html">
             <a href="#">acceuil</a>
           </li>
-
-        
-
-          
           <li class="item" data-target-page="">
             <a href="#">Mes modules</a>
           </li>
@@ -132,14 +131,19 @@
     });
     
     function loadPageIntoContainer(targetPage) {
-      console.log("Loading page:", targetPage);
-      fetch(targetPage)
-        .then(response => response.text())
-        .then(content => {
-          contentContainer.innerHTML = content;
-        })
-        .catch(error => console.error("Error loading page:", error));
-    }
+                 // Append the idEtud to the targetPage URL if idEtud is defined
+                 const finalTargetPage = idEtud ? `${targetPage}?iduser=${idEtud}` : targetPage;
+                
+                 console.log("Loading page:", finalTargetPage);
+                
+                 fetch(finalTargetPage)
+                   .then(response => response.text())
+                   .then(content => {
+                     contentContainer.innerHTML = content;
+                   })
+                   .catch(error => console.error("Error loading page:", error));
+}
+
     
     sidebarClose.addEventListener("click", () => {
     sidebar.classList.toggle("close");

@@ -46,6 +46,7 @@ document.getElementById('loginform2').addEventListener('submit', function (event
                             }
                             
                         } else if (userStatus === 'en attente') {
+                            showAlert("Le compte n\'est pas encore validé par l\'administrateur.")
                             alert("Le compte n\'est pas encore validé par l\'administrateur.");
                             console.log('Le compte n\'est pas encore validé par l\'administrateur.');
                             // Afficher le message si le compte est en attente
@@ -71,3 +72,14 @@ document.getElementById('loginform2').addEventListener('submit', function (event
             console.log('Error signing in:', errorCode, errorMessage);
         });
 });
+function showAlert(message) {
+    const alert = $('.alert');
+    alert.find('.msg').text(message);
+    alert.addClass("show");
+    alert.removeClass("hide");
+    alert.addClass("showAlert");
+    setTimeout(() => {
+        alert.removeClass("show");
+        alert.addClass("hide");
+    }, 5000);
+}

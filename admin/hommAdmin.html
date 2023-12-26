@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - codingnepalweb.com -->
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sidebar Menu for Admin Dashboard | CodingNepal</title>
     <link rel="stylesheet" href="hommAdmi.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <script type="module" src="../backend/globale.js"></script>
-    <!-- Fontawesome CDN Link -->
+  
+  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
   </head>
   <body>
@@ -19,19 +21,22 @@
         <ul class="menu-items">
           <div class="menu-title">admin</div>
 
-          <li class="item" data-target-page="login.html">
-            <a href="#">Your first link</a>
+          <li class="item" data-target-page="etudNoValid.html">
+            <a href="#">compte etudiant non valide</a>
           </li>
 
-        
 
           
-          <li class="item" data-target-page="second-link.html">
-            <a href="#">Your second link</a>
+          <li class="item" data-target-page="courNoValid.html">
+            <a href="#">cours no valide</a>
+          </li>
+ 
+          <li class="item" data-target-page="modulNoValid.html">
+            <a href="#">les module no valide</a>
           </li>
 
-          <li class="item" data-target-page="third-link.html">
-            <a href="#">Your third link</a>
+          <li class="item" data-target-page="ensNoValid.html">
+            <a href="#">compte ensign non valide</a>
           </li>
         </ul>
       </div>
@@ -70,64 +75,28 @@
        // Utilise la variable reçue comme bon te semble
         console.log("Variable reçue : " + idadmin);
   
-  
-  
-  
-  
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
        ////front script de la page
       const sidebar = document.querySelector(".sidebar");
       const sidebarClose = document.querySelector("#sidebar-close");
@@ -138,7 +107,7 @@
       sidebar.classList.toggle("close");
   
        // il point vere la premier page dans votre sid bar
-        loadPageIntoContainer("login.html")
+        loadPageIntoContainer("etudNoValid.html")
   
   
   
@@ -171,16 +140,65 @@
           }
         });
       });
-      
-      function loadPageIntoContainer(targetPage) {
-        console.log("Loading page:", targetPage);
-        fetch(targetPage)
-          .then(response => response.text())
-          .then(content => {
-            contentContainer.innerHTML = content;
-          })
-          .catch(error => console.error("Error loading page:", error));
-      }
+      function validerEtudiant(idEtudiant) {
+        fetch('backend/valider_etudiant.php?id=' + idEtudiant)
+            .then(response => response.json())
+            .then(response => {
+                if (response.success) {
+                    console.log('Student validated successfully. Server response:', response);
+    
+                    // Update Firestore document
+                    const userDocRef = db.collection('users').doc(idEtudiant);
+                    return userDocRef.update({
+                        stat: 'valide'
+                    });
+                } else {
+                    console.error('Error validating student. Server response:', response);
+                    alert('Error validating student.');
+                }
+            })
+            .then(() => {
+                // Update the interface or reload the list
+                getEtudiantsEnAttente();
+            })
+            .catch(error => console.error('Error validating student:', error));
+    }
+      function loadPageIntoContainer(targetPage, idEtud) {
+  // Append the idEtud to the targetPage URL if idEtud is defined
+  const finalTargetPage = idEtud ? `${targetPage}?iduser=${idEtud}` : targetPage;
+
+  console.log("Loading page:", finalTargetPage);
+
+  fetch(finalTargetPage)
+    .then(response => response.text())
+    .then(content => {
+      contentContainer.innerHTML = content;
+      loadDynamicScripts(content); // Optionally load dynamic scripts
+    })
+    .catch(error => console.error("Error loading page:", error));
+}
+
+function loadDynamicScripts(content) {
+  const tempContainer = document.createElement('div');
+  tempContainer.innerHTML = content;
+
+  // Find all script elements in the loaded content
+  const scriptElements = tempContainer.querySelectorAll('script');
+
+  // Remove existing script elements from the DOM
+  document.querySelectorAll('script').forEach(script => script.remove());
+
+  // Load each script dynamically
+  scriptElements.forEach(scriptElement => {
+    const newScript = document.createElement('script');
+    newScript.src = scriptElement.src;
+    newScript.type = 'module';
+    document.body.appendChild(newScript);
+  });
+}
+
+
+
       
       sidebarClose.addEventListener("click", () => {
       sidebar.classList.toggle("close");
@@ -201,5 +219,6 @@
   }
       
       </script>
+      
   </body>
 </html>

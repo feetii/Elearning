@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des étudiants en attente</title>
+    <script src="backend/get.js"></script>
+</head>
+<script type="module">
+    import { getEtudiantsEnAttente, validerEtudiant } from 'backend/get.js';
+  
+    // ... your existing code ...
+  
+    // Fonction pour valider un étudiant
+    // Function to validate a student
+    function validerEtudiant(idEtudiant) {
+      // Use the imported validerEtudiant function
+      validerEtudiant(idEtudiant)
+        .then(() => {
+          // Update the interface or reload the list
+          getEtudiantsEnAttente();
+        })
+        .catch(error => console.error('Error validating student:', error));
+    }
+  
+    getEtudiantsEnAttente();
+  
+    // Reload every 3 seconds
+    setInterval(() => {
+      getEtudiantsEnAttente();
+    }, 3000);
+  </script>
+<body>
+
+<div id="etudiants-list"></div>
+
+
+</body>
+</html>
